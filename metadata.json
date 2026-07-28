@@ -1,0 +1,6 @@
+{
+  "name": "Garden Care - Meerut",
+  "description": "Lawn mowers, garden tools, sprinkler systems & planters in Meerut since 1976",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

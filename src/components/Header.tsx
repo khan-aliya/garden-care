@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
-import { Search, ShoppingBag, Phone, Menu, X, Leaf, MessageSquare, MapPin, Award, Globe } from 'lucide-react';
-import { MEERUT_SHOP_PHONE, formatCurrency } from '../utils/formatters';
-import { useLanguage } from '../context/LanguageContext';
+import React, { useState } from "react";
+import {
+  Search,
+  ShoppingBag,
+  Phone,
+  Menu,
+  X,
+  Leaf,
+  MessageSquare,
+  MapPin,
+  Award,
+  Globe,
+} from "lucide-react";
+import { MEERUT_SHOP_PHONE, formatCurrency } from "../utils/formatters";
+import { useLanguage } from "../context/LanguageContext";
+import logo from "../images/logo.png";
 
 interface HeaderProps {
   cartCount: number;
@@ -28,17 +40,23 @@ export const Header: React.FC<HeaderProps> = ({
   const { language, toggleLanguage, t } = useLanguage();
 
   const navItems = [
-    { id: 'all', label: t.allCategories },
-    { id: 'lawn-mowers', label: t.lawnMowers },
-    { id: 'planters', label: t.planters },
-    { id: 'garden-tools', label: t.gardenTools },
-    { id: 'sprinklers', label: t.sprinklers },
+    { id: "all", label: t.allCategories },
+    { id: "lawn-mowers", label: t.lawnMowers },
+    { id: "planters", label: t.planters },
+    { id: "garden-tools", label: t.gardenTools },
+    { id: "sprinklers", label: t.sprinklers },
   ];
 
   return (
-    <header id="main-header" className="sticky top-0 z-40 bg-white shadow-sm border-b border-emerald-100">
+    <header
+      id="main-header"
+      className="sticky top-0 z-40 bg-white shadow-sm border-b border-emerald-100"
+    >
       {/* Top Banner Ticker */}
-      <div id="top-announcement-bar" className="bg-emerald-900 text-emerald-50 px-4 py-1.5 text-xs font-medium">
+      <div
+        id="top-announcement-bar"
+        className="bg-emerald-900 text-emerald-50 px-4 py-1.5 text-xs font-medium"
+      >
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
             <span className="flex items-center gap-1 text-amber-300">
@@ -46,7 +64,8 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
             <span className="hidden md:inline text-emerald-300">•</span>
             <span className="hidden md:flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-emerald-400" /> {t.topBarText.split('|')[0]}
+              <MapPin className="w-3.5 h-3.5 text-emerald-400" />{" "}
+              {t.topBarText.split("|")[0]}
             </span>
           </div>
 
@@ -58,11 +77,15 @@ export const Header: React.FC<HeaderProps> = ({
               title="Change Language / भाषा बदलें"
             >
               <Globe className="w-3.5 h-3.5" />
-              <span>{language === 'en' ? '🇮🇳 हिंदी में देखें' : '🇬🇧 Switch to English'}</span>
+              <span>
+                {language === "en"
+                  ? "🇮🇳 हिंदी में देखें"
+                  : "🇬🇧 Switch to English"}
+              </span>
             </button>
 
             <a
-              href={`https://wa.me/${MEERUT_SHOP_PHONE.replace('+', '')}?text=${encodeURIComponent(language === 'hi' ? 'नमस्ते शहाबाज़ भाई, मुझे गार्डन केयर सामान के बारे में जानकारी चाहिए।' : 'Hello Shabaz Bhai, I visited your Garden Care website and need help with garden equipment.')}`}
+              href={`https://wa.me/${MEERUT_SHOP_PHONE.replace("+", "")}?text=${encodeURIComponent(language === "hi" ? "नमस्ते शहाबाज़ भाई, मुझे गार्डन केयर सामान के बारे में जानकारी चाहिए।" : "Hello Shabaz Bhai, I visited your Garden Care website and need help with garden equipment.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-1.5 text-emerald-200 hover:text-white transition-colors"
@@ -77,15 +100,14 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
         <div className="flex items-center justify-between gap-4">
-          
           {/* Logo & Legacy Badge */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => onSelectCategory('all')}
+              onClick={() => onSelectCategory("all")}
               className="flex items-center gap-2.5 text-left group focus:outline-none"
             >
-              <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:bg-emerald-700 transition-colors">
-                <Leaf className="w-6 h-6" />
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img src={logo} className="w-full h-full rounded-md" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -97,7 +119,9 @@ export const Header: React.FC<HeaderProps> = ({
                   </span>
                 </div>
                 <p className="text-[11px] text-gray-500 font-medium">
-                  {language === 'hi' ? 'लॉन मूवर, फाइबर गमले व औजार (1976 से)' : 'Lawn Mowers, Garden Tools & Planters Since 1976'}
+                  {language === "hi"
+                    ? "लॉन मूवर, फाइबर गमले व औजार (1976 से)"
+                    : "Lawn Mowers, Garden Tools & Planters Since 1976"}
                 </p>
               </div>
             </button>
@@ -116,7 +140,7 @@ export const Header: React.FC<HeaderProps> = ({
               <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-2.5" />
               {searchQuery && (
                 <button
-                  onClick={() => onSearchChange('')}
+                  onClick={() => onSearchChange("")}
                   className="absolute right-3 top-2.5 text-xs text-gray-400 hover:text-gray-600"
                 >
                   Clear
@@ -133,7 +157,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-500/40 bg-amber-50 text-amber-900 text-xs font-bold hover:bg-amber-100 transition-colors"
             >
               <Globe className="w-3.5 h-3.5 text-amber-600" />
-              <span>{language === 'en' ? 'हिंदी' : 'English'}</span>
+              <span>{language === "en" ? "हिंदी" : "English"}</span>
             </button>
 
             <button
@@ -152,7 +176,9 @@ export const Header: React.FC<HeaderProps> = ({
               className="relative flex items-center gap-2 px-3.5 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 transition-all shadow-sm shadow-emerald-600/30"
             >
               <ShoppingBag className="w-4 h-4" />
-              <span className="hidden sm:inline text-xs font-bold">{t.cart}</span>
+              <span className="hidden sm:inline text-xs font-bold">
+                {t.cart}
+              </span>
               {cartCount > 0 && (
                 <span className="flex items-center justify-center min-w-5 h-5 px-1 bg-amber-400 text-emerald-950 font-extrabold text-[11px] rounded-full border border-white">
                   {cartCount}
@@ -171,7 +197,11 @@ export const Header: React.FC<HeaderProps> = ({
               className="p-2 rounded-lg text-gray-600 hover:bg-gray-100 lg:hidden focus:outline-none"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -193,13 +223,16 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-1 px-3 py-2 bg-amber-100 text-amber-900 border border-amber-300 rounded-lg text-xs font-bold shrink-0"
           >
             <Globe className="w-3.5 h-3.5 text-amber-700" />
-            <span>{language === 'en' ? 'हिंदी' : 'Eng'}</span>
+            <span>{language === "en" ? "हिंदी" : "Eng"}</span>
           </button>
         </div>
       </div>
 
       {/* Category Nav Strip (Desktop) */}
-      <nav id="category-nav-strip" className="hidden lg:block border-t border-gray-100 bg-gray-50/80">
+      <nav
+        id="category-nav-strip"
+        className="hidden lg:block border-t border-gray-100 bg-gray-50/80"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-1 py-1">
             {navItems.map((item) => {
@@ -210,8 +243,8 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => onSelectCategory(item.id)}
                   className={`px-4 py-2 rounded-md text-xs font-semibold transition-all ${
                     isActive
-                      ? 'bg-emerald-600 text-white shadow-sm'
-                      : 'text-gray-700 hover:bg-gray-200/60 hover:text-emerald-800'
+                      ? "bg-emerald-600 text-white shadow-sm"
+                      : "text-gray-700 hover:bg-gray-200/60 hover:text-emerald-800"
                   }`}
                 >
                   {item.label}
@@ -241,17 +274,23 @@ export const Header: React.FC<HeaderProps> = ({
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-gray-200 bg-white px-4 py-4 space-y-3">
           <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">{t.switchLanguage}</p>
+            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+              {t.switchLanguage}
+            </p>
             <button
               onClick={toggleLanguage}
               className="flex items-center gap-1.5 px-3 py-1 bg-emerald-700 text-white rounded-md text-xs font-bold"
             >
               <Globe className="w-3.5 h-3.5" />
-              <span>{language === 'en' ? 'हिंदी में बदलें' : 'Switch to English'}</span>
+              <span>
+                {language === "en" ? "हिंदी में बदलें" : "Switch to English"}
+              </span>
             </button>
           </div>
 
-          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Browse Collections</p>
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+            Browse Collections
+          </p>
           <div className="grid grid-cols-1 gap-1">
             {navItems.map((item) => (
               <button
@@ -262,8 +301,8 @@ export const Header: React.FC<HeaderProps> = ({
                 }}
                 className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === item.id
-                    ? 'bg-emerald-100 text-emerald-900 font-bold'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? "bg-emerald-100 text-emerald-900 font-bold"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 {item.label}
@@ -282,7 +321,7 @@ export const Header: React.FC<HeaderProps> = ({
               {t.bulkEnquiry}
             </button>
             <a
-              href={`https://wa.me/${MEERUT_SHOP_PHONE.replace('+', '')}?text=${encodeURIComponent(language === 'hi' ? 'नमस्ते शहाबाज़ भाई, मुझे गार्डन केयर सामान के बारे में बात करनी है।' : 'Hello Shabaz Khan, I have an inquiry about Garden Care products.')}`}
+              href={`https://wa.me/${MEERUT_SHOP_PHONE.replace("+", "")}?text=${encodeURIComponent(language === "hi" ? "नमस्ते शहाबाज़ भाई, मुझे गार्डन केयर सामान के बारे में बात करनी है।" : "Hello Shabaz Khan, I have an inquiry about Garden Care products.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-600 text-white text-xs font-bold"
@@ -296,4 +335,3 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
-
